@@ -1,18 +1,27 @@
-import React from "react";
 import { useParams } from "react-router-dom";
 import useGlobalReducer from "../hooks/useGlobalReducer";
-export const Details = () => {
-    const { id } = useParams();
-    const { store } = useGlobalReducer();
+import { useEffect, useState } from "react";
+import { getSingleCharacters } from "../Services/ApiServices";
+
+export const Details = ()=>{
+    
+
+    const {id}=useParams();
+    const {store}=useGlobalReducer();
+    const [character,setCharacter] = useState({})
 
 
-    const character = store.characters.find(item => item.id === Number(id));
-    console.log(character);
+    const loadSingleCharacters = async () => {
+        const dataCharacter = await getSingleCharacters(id)
+        setCharacter(dataCharacter)
 
+    }
 
-    if (!character) return <p>Cargando detalles...</p>;
-
-    return (
+    useEffect(()=>{
+        loadSingleCharacters();
+    },[]);
+    
+ return (
         <div className="container mt-5">
             <div className="card shadow text-center">
                 <div className="card-header bg-primary text-white">
@@ -24,18 +33,19 @@ export const Details = () => {
                         alt={character.name}
                         style={{ width: "300px" }}
                     />
-                    <div className="mt-4">
-                        <p className="mb-2"><strong>Edad:</strong> {character.age}</p>
-                        <p className="mb-2"><strong>Cumpleaños:</strong> {character.birthdate}</p>
-                        <p className="mb-2"><strong>Género:</strong> {character.gender}</p>
-                        <p className="mb-2"><strong>Trabajo</strong> {character.occupation}</p>
-                        <p className="mb-2">
-                            <strong>Frase famosa:</strong> {character.phrases[0]}
-                        </p>
-                        <p className="mb-2"><strong>Estado:</strong> {character.status}</p>
+                    <div className="container mt-4">
+
+                        <p> <strong>EDAD:</strong>{character.age} </p>
+                        <p> <strong>FECHA DE NACIMIENTO:</strong>{character.birthdate} </p>
+                        <p> <strong>OCUPACION:</strong>{character.occupation} </p>
+                        <p> <strong>FRASE FAMOSA:</strong> </p>
+
                     </div>
                 </div>
             </div>
         </div>
     );
+
+
+    
 };
