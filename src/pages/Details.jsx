@@ -38,7 +38,7 @@ export const Details = ()=>{
                         <p> <strong>EDAD:</strong>{character.age} </p>
                         <p> <strong>FECHA DE NACIMIENTO:</strong>{character.birthdate} </p>
                         <p> <strong>OCUPACION:</strong>{character.occupation} </p>
-                        <p> <strong>FRASE FAMOSA:</strong> </p>
+                        <p> <strong>FRASE FAMOSA:</strong>{character.phrases?.[0]} </p>
 
                     </div>
                 </div>
