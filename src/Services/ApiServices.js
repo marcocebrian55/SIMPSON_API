@@ -28,3 +28,30 @@ return data;
 
 
 };
+
+
+export const getLocations = async(dispatch)=>{
+const response = await fetch(`${BASE_URL}/locations`);
+const data = await response.json();
+
+
+dispatch({
+        type: "GET_LOCATIONS",
+        payload: data.results,
+    });
+    return data.results
+    ;
+
+
+};
+
+
+export const getSingleLocations = async(id)=>{
+const response = await fetch(`${BASE_URL}/locations/${id}`);
+
+const data = await response.json();
+
+return data;
+
+
+};

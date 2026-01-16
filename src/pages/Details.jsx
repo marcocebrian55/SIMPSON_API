@@ -35,9 +35,12 @@ export const Details = ()=>{
                     />
                     <div className="container mt-4">
 
-                        <p> <strong>EDAD:</strong>{character.age} </p>
-                        <p> <strong>FECHA DE NACIMIENTO:</strong>{character.birthdate} </p>
-                        <p> <strong>OCUPACION:</strong>{character.occupation} </p>
+                        <p> <strong>EDAD:</strong>
+                        {character.age || "Sin datos"} </p>
+                        <p> <strong>FECHA DE NACIMIENTO:</strong>
+                        {character.birthdate || "Sin datos"} </p>
+                        <p> <strong>OCUPACION:</strong> 
+                        {character.occupation || "Sin datos"} </p>
                         <p> <strong>FRASE FAMOSA:</strong>{character.phrases?.[0]} </p>
 
                     </div>
